@@ -34,7 +34,7 @@ class EstadoPagNovo extends State<PagNovo> {
           height: 20,
         ),
         DropdownButton(
-          hint: Text('tipo'),
+          hint: const Text('tipo'),
           // Initial Value
           value: dropdownvalue,
 
@@ -85,7 +85,7 @@ class EstadoPagNovo extends State<PagNovo> {
         ),
         campo('Exergia', Icons.power),
         Container(
-          height: 7,
+          height: 15,
         ),
         SizedBox(
           width: 180,

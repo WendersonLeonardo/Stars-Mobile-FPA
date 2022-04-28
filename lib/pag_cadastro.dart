@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:teste/controlador.dart';
+import 'package:teste/funcoes.dart';
 
 class PagCadastro extends StatefulWidget {
   const PagCadastro({Key? key}) : super(key: key);
@@ -120,32 +120,8 @@ Widget corpitcho(context, usuario, senha) {
             Container(
               height: 30,
             ),
-            SizedBox(
-              width: 180,
-              child: RawMaterialButton(
-                fillColor: Colors.blueAccent,
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25)),
-                onPressed: () {
-                  //if ((usuario == 'abc') && (senha == '1234')) {
-                  //print('valido');
-                  //Navigator.of(context).pushNamed('/');
-                  //Navigator.of(context).push(MaterialPageRoute(
-                  //push empilha a proxima tela sobre a atual
-                  //pushReplacement elimina a tela atual da pilha de telas
-                  //builder: (context) => PagInicial()));
-                  //} else {
-                  //print('invalido');
-                  //}
-                },
-                child: const Text(
-                  'cadastrar',
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                ),
-              ),
-              //color: Colors.amber,
-            )
+            botaum(context, 'cadastrar', const Color.fromARGB(255, 62, 150, 66),
+                ''),
           ],
         ),
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:teste/funcoes.dart';
 
 class PagRecSenha extends StatefulWidget {
   const PagRecSenha({Key? key}) : super(key: key);
@@ -50,7 +51,7 @@ Widget corpitcho(context, usuario) {
             Container(
               height: 40,
             ),
-            Text(
+            const Text(
               'Informe seu e-mail',
               style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
             ),
@@ -74,24 +75,8 @@ Widget corpitcho(context, usuario) {
             Container(
               height: 30,
             ),
-            SizedBox(
-              width: 180,
-              child: RawMaterialButton(
-                fillColor: Colors.blueAccent,
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25)),
-                onPressed: () {
-                  //Navigator.of(context).pushNamed('/lista');
-                },
-                child: const Text(
-                  'solicitar',
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                ),
-              ),
-              //color: Colors.amber,
-            ),
-            SizedBox(
+            botaum(context, 'solicitar', Colors.redAccent, ''),
+            const SizedBox(
               height: 10,
             ),
           ],

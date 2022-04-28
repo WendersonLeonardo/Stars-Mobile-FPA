@@ -89,7 +89,7 @@ class EstadoPagDados extends State<PagDados> {
                 ),
               ],
             ),
-            botaum('edtar', Colors.greenAccent)
+            botaum(context, 'edtar', Colors.greenAccent, '')
           ],
         ),
       ),

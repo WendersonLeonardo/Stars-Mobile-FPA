@@ -18,8 +18,8 @@ class EstadoPagScroll extends State<PagScroll> {
     return Scaffold(
         drawer: Drawer(
           child: Column(
-            children: [
-              const UserAccountsDrawerHeader(
+            children: const [
+              UserAccountsDrawerHeader(
                   currentAccountPicture: SizedBox(
                     child: Icon(
                       Icons.person,
@@ -30,7 +30,7 @@ class EstadoPagScroll extends State<PagScroll> {
                   ),
                   accountName: Text('www'),
                   accountEmail: Text('jklç')),
-              const ListTile(
+              ListTile(
                 leading: Icon(Icons.abc),
                 title: Text('saaa'),
                 subtitle: Text('ssdf'),
@@ -79,7 +79,7 @@ class Alternador extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Switch(
-        value: Controlador.ctrl.eh_de_noite,
+        value: Controlador.ctrl.ehDeNoite,
         onChanged: (value) {
           Controlador.ctrl.changeTheme();
         });

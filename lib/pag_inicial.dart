@@ -96,7 +96,7 @@ class Alternador extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Switch(
-        value: Controlador.ctrl.eh_de_noite,
+        value: Controlador.ctrl.ehDeNoite,
         onChanged: (value) {
           Controlador.ctrl.changeTheme();
         });

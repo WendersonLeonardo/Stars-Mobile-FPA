@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:teste/pag_dados.dart';
 
+import 'controlador.dart';
+
 Widget linha(context, String texto1, String texto2, Color cor, Widget icone) {
   return GestureDetector(
       child: ListTile(
@@ -29,7 +31,7 @@ class FicaEscuro extends ChangeNotifier {
   bool estahEscuro = false;
 
   escurecer() {
-    print('b' + estahEscuro.toString());
+    //('b' + estahEscuro.toString());
     estahEscuro = !estahEscuro;
     (estahEscuro ? Brightness.dark : Brightness.light);
     notifyListeners();
@@ -44,10 +46,10 @@ class Alternador extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Switch(
-        value: true, //Controlador.ctrl.ehDeNoite,
+        value: Controlador.ctrl.ehDeNoite,
         onChanged: (value) {
-          value = false;
-          //Controlador.ctrl.changeTheme();
+          //value = false;
+          Controlador.ctrl.changeTheme();
         });
   }
 }
@@ -73,14 +75,16 @@ Widget campo(String texto, IconData icone) {
   );
 }
 
-Widget botaum(String texto, Color cor) {
+Widget botaum(context, String texto, Color cor, String rota) {
   return SizedBox(
     width: 180,
     child: RawMaterialButton(
       fillColor: cor,
       padding: const EdgeInsets.symmetric(vertical: 10),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
-      onPressed: () {},
+      onPressed: () {
+        Navigator.of(context).pushNamed(rota);
+      },
       child: const Text(
         'editar',
         style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
@@ -88,6 +92,20 @@ Widget botaum(String texto, Color cor) {
     ),
     //color: Colors.amber,
   );
+}
+
+void chamarAviso(BuildContext context, String titulo, String texto) {
+  showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(
+            titulo,
+            style: const TextStyle(fontSize: 20),
+          ),
+          content: Text(texto),
+        );
+      });
 }
 
 /*
