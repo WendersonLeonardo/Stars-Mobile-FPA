@@ -9,12 +9,13 @@ class PagNovo extends StatefulWidget {
 }
 
 class EstadoPagNovo extends State<PagNovo> {
-  aaa selecionado = aaa.ups;
-  List listaEqp = ['ups', 'sdt', 'subp', 'ps'];
-  String escolha = '';
-  final valor = ValueNotifier('');
-  String? value;
-  String dropdownValue = 'One';
+  //List<Map<String, dynamic>> selectedClasses = [];
+
+  String dropdownvalue = 'ups';
+
+  // List of items in our dropdown menu
+  var listaEqp = ['ups', 'sdt', 'subp', 'ps'];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,18 +33,35 @@ class EstadoPagNovo extends State<PagNovo> {
         Container(
           height: 20,
         ),
-        PopupMenuButton<aaa>(
-          onSelected: (aaa resultado) {
+        DropdownButton(
+          hint: Text('tipo'),
+          // Initial Value
+          value: dropdownvalue,
+
+          // Down Arrow Icon
+          icon: const Icon(Icons.keyboard_arrow_down),
+
+          elevation: 16,
+          style: const TextStyle(fontSize: 16, color: Colors.black),
+          underline: Container(
+            height: 2,
+            color: Colors.black,
+          ),
+
+          // Array list of items
+          items: listaEqp.map((String eqp) {
+            return DropdownMenuItem(
+              value: eqp,
+              child: Text(eqp),
+            );
+          }).toList(),
+          // After selecting the desired option,it will
+          // change button value to selected value
+          onChanged: (String? newValue) {
             setState(() {
-              selecionado = resultado;
+              dropdownvalue = newValue!;
             });
           },
-          itemBuilder: (BuildContext context) => <PopupMenuEntry<aaa>>[
-            const PopupMenuItem(child: Text('data'), value: aaa.ps),
-            const PopupMenuItem(child: Text('data'), value: aaa.sdt),
-            const PopupMenuItem(child: Text('data'), value: aaa.subp),
-            const PopupMenuItem(child: Text('data'), value: aaa.ps)
-          ],
         ),
         campo('mttf', Icons.av_timer_outlined),
         Container(

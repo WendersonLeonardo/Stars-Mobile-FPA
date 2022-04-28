@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:teste/pag_cadastro.dart';
+import 'package:teste/pag_recsenha.dart';
 
 class PagLogin extends StatefulWidget {
   const PagLogin({Key? key}) : super(key: key);
@@ -82,6 +84,17 @@ Widget corpitcho(context, usuario, senha) {
                   ),
                   border: OutlineInputBorder()),
             ),
+            GestureDetector(
+              child: const Text(
+                'Esqueceu a senha?',
+                textAlign: TextAlign.start,
+                style: TextStyle(color: Colors.blue, fontSize: 20),
+              ),
+              onTap: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => PagRecSenha()));
+              },
+            ),
             Container(
               height: 30,
             ),
@@ -93,16 +106,16 @@ Widget corpitcho(context, usuario, senha) {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(25)),
                 onPressed: () {
-                  if ((usuario == 'abc') && (senha == '1234')) {
-                    print('valido');
-                    Navigator.of(context).pushNamed('/lista');
-                    //Navigator.of(context).push(MaterialPageRoute(
-                    //push empilha a proxima tela sobre a atual
-                    //pushReplacement elimina a tela atual da pilha de telas
-                    //builder: (context) => PagInicial()));
-                  } else {
-                    print('invalido');
-                  }
+                  //if ((usuario == 'abc') && (senha == '1234')) {
+                  //print('valido');
+                  Navigator.of(context).pushNamed('/lista');
+                  //Navigator.of(context).push(MaterialPageRoute(
+                  //push empilha a proxima tela sobre a atual
+                  //pushReplacement elimina a tela atual da pilha de telas
+                  //builder: (context) => PagInicial()));
+                  //} else {
+                  //print('invalido');
+                  //}
                 },
                 child: const Text(
                   'login',
@@ -110,6 +123,19 @@ Widget corpitcho(context, usuario, senha) {
                 ),
               ),
               //color: Colors.amber,
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            GestureDetector(
+              child: const Text(
+                'cadastrar',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
+              onTap: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => PagCadastro()));
+              },
             )
           ],
         ),

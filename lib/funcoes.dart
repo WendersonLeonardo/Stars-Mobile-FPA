@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:teste/pag_dados.dart';
 
-import 'controlador.dart';
-
 Widget linha(context, String texto1, String texto2, Color cor, Widget icone) {
   return GestureDetector(
       child: ListTile(
@@ -25,17 +23,71 @@ Widget linha(context, String texto1, String texto2, Color cor, Widget icone) {
       });
 }
 
+class FicaEscuro extends ChangeNotifier {
+  static FicaEscuro noite = FicaEscuro();
+
+  bool estahEscuro = false;
+
+  escurecer() {
+    print('b' + estahEscuro.toString());
+    estahEscuro = !estahEscuro;
+    (estahEscuro ? Brightness.dark : Brightness.light);
+    notifyListeners();
+  }
+}
+
 class Alternador extends StatelessWidget {
   const Alternador({Key? key}) : super(key: key);
+
+  //const Alternador({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Switch(
-        value: Controlador.ctrl.eh_De_Noite1,
+        value: true, //Controlador.ctrl.ehDeNoite,
         onChanged: (value) {
-          Controlador.ctrl.changeTheme();
+          value = false;
+          //Controlador.ctrl.changeTheme();
         });
   }
+}
+
+Widget campo(String texto, IconData icone) {
+  return Container(
+    width: 300,
+    height: 50,
+    alignment: Alignment.center,
+    child: TextField(
+      onChanged: (dado) {},
+      keyboardType: TextInputType.number,
+      obscureText: true,
+      decoration: InputDecoration(
+          hintText: texto,
+          prefixIcon: Icon(
+            icone,
+            color: Colors.grey,
+            size: 35,
+          ),
+          border: const OutlineInputBorder()),
+    ),
+  );
+}
+
+Widget botaum(String texto, Color cor) {
+  return SizedBox(
+    width: 180,
+    child: RawMaterialButton(
+      fillColor: cor,
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
+      onPressed: () {},
+      child: const Text(
+        'editar',
+        style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+      ),
+    ),
+    //color: Colors.amber,
+  );
 }
 
 /*

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'funcoes.dart';
+import 'package:teste/funcoes.dart';
 
 class PagDados extends StatefulWidget {
   final String texto1;
@@ -21,7 +20,7 @@ class PagDados extends StatefulWidget {
 
 class EstadoPagDados extends State<PagDados> {
   int cont = 0;
-  bool eh_de_noite = false;
+  bool ehDeNoite = false;
 
   String texto1;
   final String texto2;
@@ -90,21 +89,7 @@ class EstadoPagDados extends State<PagDados> {
                 ),
               ],
             ),
-            SizedBox(
-              width: 180,
-              child: RawMaterialButton(
-                fillColor: Colors.blueAccent,
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25)),
-                onPressed: () {},
-                child: const Text(
-                  'editar',
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                ),
-              ),
-              //color: Colors.amber,
-            ),
+            botaum('edtar', Colors.greenAccent)
           ],
         ),
       ),
