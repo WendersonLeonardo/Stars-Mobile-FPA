@@ -1,87 +1,149 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:teste/pag_novo.dart';
-
-import 'controlador.dart';
 import 'funcoes.dart';
 
 class PagScroll extends StatefulWidget {
   const PagScroll({Key? key}) : super(key: key);
 
   @override
-  State<PagScroll> createState() => EstadoPagScroll();
+  State<PagScroll> createState() => _PagScrollState();
 }
 
-class EstadoPagScroll extends State<PagScroll> {
-  bool ativado = false;
+class _PagScrollState extends State<PagScroll> {
+  bool _isEqpMode = false;
+
+  final Stream<QuerySnapshot> epqStream = FirebaseFirestore.instance
+      .collection('usuarios')
+      .doc(FirebaseAuth.instance.currentUser?.uid)
+      .collection('equipamentos')
+      .snapshots();
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        drawer: Drawer(
-          child: Column(
-            children: const [
-              UserAccountsDrawerHeader(
-                  currentAccountPicture: SizedBox(
-                    child: Icon(
-                      Icons.person,
-                      size: 70,
+    return StreamBuilder<QuerySnapshot>(
+        stream: epqStream,
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasError) {
+            chamarAviso(context, '', 'Something went Wrong');
+          }
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+
+          final List storedocs = [];
+          snapshot.data!.docs.map((DocumentSnapshot document) {
+            Map a = document.data() as Map<String, dynamic>;
+            storedocs.add(a);
+            a['id'] = document.id;
+          }).toList();
+
+          if (storedocs.isEmpty) {
+            _isEqpMode = true;
+          }
+
+          return Scaffold(
+              appBar: AppBar(
+                title: const Text('Equipamentos'),
+              ),
+              backgroundColor: const Color.fromARGB(255, 115, 230, 186),
+              body: _isEqpMode
+                  ? Column(
+                      children: [
+                        const SizedBox(
+                          height: 40,
+                        ),
+                        Container(
+                          width: double.infinity,
+                          height: MediaQuery.of(context).size.height * 0.4,
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(
+                                'assets/images/sad.png',
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 50,
+                        ),
+                        const Text(
+                          "Não existem equipamentos cadastrados\n \n Clique no botão + para cadastrar um novo",
+                          style: TextStyle(
+                              fontSize: 20.0, fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    )
+                  : GridView.count(
+                      crossAxisCount: 2,
+                      padding: const EdgeInsets.all(16.0),
+                      childAspectRatio: 8.0 / 9.0,
+                      // children: _buildGridCards(context, 6)
+                      children: <Widget>[
+                        for (var i = 0; i < storedocs.length; i++) ...[
+                          Card(
+                            elevation: 10,
+                            clipBehavior: Clip.antiAlias,
+                            child: InkWell(
+                              onTap: () {
+                                // Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>InfoTanque( id: storedocs[i]['id'])));
+
+                                /*Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => InfoTanque(
+                                id: storedocs[i]['id']),
+                          ),
+                        );*/
+                              },
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  const AspectRatio(
+                                      aspectRatio: 18.0 / 11.0,
+                                      child: Icon(
+                                        Icons.settings_input_component_rounded,
+                                        size: 65,
+                                      )
+                                      //Image.asset('assets/images/tanque.png'),
+                                      ),
+                                  Padding(
+                                    padding: const EdgeInsets.fromLTRB(
+                                        16.0, 0.0, 16.0, 8.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        Text(
+                                          storedocs[i]['nome'],
+                                          style: const TextStyle(
+                                              fontSize: 14.0,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text(storedocs[i]['tipo'])
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ],
                     ),
-                    width: 50,
-                    height: 50,
+              floatingActionButton: FloatingActionButton(
+                  child: const Icon(
+                    Icons.add_circle_outline,
+                    size: 55,
                   ),
-                  accountName: Text('www'),
-                  accountEmail: Text('jklç')),
-              ListTile(
-                leading: Icon(Icons.abc),
-                title: Text('saaa'),
-                subtitle: Text('ssdf'),
-              )
-            ],
-          ),
-        ),
-        appBar: AppBar(
-          title: const Text("titulo"),
-          actions: [
-            Switch(
-                value: ativado, //Controlador.ctrl.eh_de_noite,
-                onChanged: (value1) {
-                  ativado = value1;
-                  //Controlador.ctrl.changeTheme();
-                })
-          ],
-          shadowColor: Colors.amber,
-          //backgroundColor: Colors.greenAccent,
-        ),
-        body: ListView(
-          children: [
-            linha(context, 'texto1', 'texto2', Colors.greenAccent,
-                const Icon(Icons.castle, size: 50)),
-            linha(context, 'saaa', 'ssdf', Colors.redAccent,
-                const Icon(Icons.face, size: 50)),
-          ],
-        ),
-        floatingActionButton: FloatingActionButton(
-            child: const Icon(
-              Icons.add_circle_outline,
-              size: 55,
-            ),
-            onPressed: () {
-              //FicaEscuro.noite.escurecer();
-
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const PagNovo()));
-            }));
-  }
-}
-
-class Alternador extends StatelessWidget {
-  const Alternador({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Switch(
-        value: Controlador.ctrl.ehDeNoite,
-        onChanged: (value) {
-          Controlador.ctrl.changeTheme();
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const PagNovo()));
+                  }));
         });
   }
 }

@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import 'funcoes.dart';
 
 class PagCadastro extends StatefulWidget {
@@ -47,6 +46,7 @@ class PagCadastroState extends State<PagCadastro> {
                         },
                         keyboardType: TextInputType.emailAddress,
                         decoration: const InputDecoration(
+                            //labelText: 'usuario',
                             hintText: 'nome',
                             prefixIcon: Icon(
                               Icons.abc,
@@ -94,7 +94,7 @@ class PagCadastroState extends State<PagCadastro> {
                       SizedBox(
                         width: 180,
                         child: RawMaterialButton(
-                          fillColor: Color.fromARGB(255, 83, 186, 204),
+                          fillColor: const Color.fromARGB(255, 83, 186, 204),
                           padding: const EdgeInsets.symmetric(vertical: 10),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(25)),
@@ -110,7 +110,6 @@ class PagCadastroState extends State<PagCadastro> {
                                 fontSize: 25, fontWeight: FontWeight.bold),
                           ),
                         ),
-                        //color: Colors.amber,
                       ),
                     ],
                   ),

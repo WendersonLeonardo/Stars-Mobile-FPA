@@ -11,6 +11,8 @@ class PagNovo extends StatefulWidget {
 }
 
 class EstadoPagNovo extends State<PagNovo> {
+  //List<Map<String, dynamic>> selectedClasses = [];
+
   DocumentReference<Map<String, dynamic>> usuario = FirebaseFirestore.instance
       .collection('usuarios')
       .doc(FirebaseAuth.instance.currentUser?.uid);
@@ -36,15 +38,10 @@ class EstadoPagNovo extends State<PagNovo> {
           'custo': preco,
           'exergia': exergia
         })
-        .then((value) => print(usuario.id))
-        .catchError((error) => print('Falha ao adicionar tanque: $error'));
+        .then((value) => Navigator.pop(context))
+        .catchError((error) => chamarAviso(
+            context, 'Falha ao cadastrar equipamento', error.toString()));
   }
-
-  Stream<List<User1>> readUsers() => FirebaseFirestore.instance
-      .collection('usuarios')
-      .snapshots()
-      .map((snapshot) =>
-          snapshot.docs.map((doc) => User1.fromJson(doc.data())).toList());
 
   TextEditingController nome = TextEditingController();
   var tipoEqp = null;
@@ -59,19 +56,22 @@ class EstadoPagNovo extends State<PagNovo> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-          color: Colors.amberAccent,
+          color: const Color.fromARGB(255, 231, 206, 116),
           child: Column(children: [
             Container(
               height: 50,
             ),
-            SizedBox(
+            const SizedBox(
               height: 80,
-              child: foto(),
+              child: Icon(
+                Icons.settings_input_component_rounded,
+                size: 65,
+              ),
             ),
             Container(
               height: 20,
             ),
-            campo_entrada(
+            campoEntrada(
                 'Nome do Equipamento', Icons.article, nome, TextInputType.name),
             Container(
               height: 7,
@@ -79,9 +79,14 @@ class EstadoPagNovo extends State<PagNovo> {
             SizedBox(
               width: 300,
               height: 60,
+              //padding: EdgeInsets.only(left: 5, right: 5),
               child: DropdownButtonFormField<String>(
                 decoration: InputDecoration(
-                  border: const OutlineInputBorder(),
+                  border: const OutlineInputBorder(
+                      //borderRadius: const BorderRadius.all(
+                      //const Radius.circular(30.0),
+                      //),
+                      ),
                   filled: true,
                   hintStyle: TextStyle(color: Colors.grey[800]),
                   hintText: "Tipo de Equipamento",
@@ -103,35 +108,72 @@ class EstadoPagNovo extends State<PagNovo> {
             Container(
               height: 7,
             ),
-            campo_entrada(
+            /*DropdownButton(
+          hint: const Text('Tipo Equipamento'),
+          icon: const Icon(Icons.keyboard_arrow_down),
+          elevation: 16,
+          style: const TextStyle(fontSize: 16, color: Colors.black),
+          underline: Container(
+            height: 2,
+            color: Colors.black,
+          ),
+          items: listaEqp.map((String eqp) {
+            return DropdownMenuItem(
+              value: eqp,
+              child: Text(eqp),
+            );
+          }).toList(),
+          onChanged: (String? newValue) {
+            setState(() {
+              dropdownvalue = newValue!;
+            });
+          },
+        ),*/
+            campoEntrada(
                 'mttf', Icons.av_timer_outlined, mttf, TextInputType.number),
             Container(
               height: 7,
             ),
-            campo_entrada(
+            campoEntrada(
                 'mttr', Icons.av_timer_outlined, mttr, TextInputType.number),
             Container(
               height: 7,
             ),
-            campo_entrada('Potencia', Icons.bolt, pot, TextInputType.number),
+            campoEntrada('Potencia', Icons.bolt, pot, TextInputType.number),
             Container(
               height: 7,
             ),
-            campo_entrada('Eficiencia', Icons.percent_outlined, eff,
+            campoEntrada('Eficiencia', Icons.percent_outlined, eff,
                 TextInputType.number),
             Container(
               height: 7,
             ),
-            campo_entrada('Preço de Compra', Icons.monetization_on_outlined,
+            campoEntrada('Preço de Compra', Icons.monetization_on_outlined,
                 preco, TextInputType.number),
             Container(
               height: 7,
             ),
-            campo_entrada(
-                'Exergia', Icons.power, exergia, TextInputType.number),
+            campoEntrada('Exergia', Icons.power, exergia, TextInputType.number),
             Container(
               height: 15,
-            )
+            ) /*,
+            SizedBox(
+              width: 180,
+              child: RawMaterialButton(
+                fillColor: Colors.blueAccent,
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25)),
+                onPressed: () {
+                  addEqp(nome: nome.text);
+                },
+                child: const Text(
+                  'Salvar',
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                ),
+              ),
+              //color: Colors.amber,
+            )*/
           ]),
         ),
         floatingActionButton: FloatingActionButton(
@@ -151,23 +193,4 @@ class EstadoPagNovo extends State<PagNovo> {
                   exergia: exergia.text);
             }));
   }
-}
-
-Widget foto() {
-  return const Icon(
-    Icons.settings_input_component_rounded,
-    size: 65,
-  );
-}
-
-class User1 {
-  String id;
-  String nome;
-
-  User1({this.id = '', required this.nome});
-
-  Map<String, dynamic> toJson() => {'id': id, 'nome': nome};
-
-  static User1 fromJson(Map<String, dynamic> json) =>
-      User1(id: json['id'], nome: json['nome']);
 }
