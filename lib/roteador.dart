@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:teste/controlador.dart';
 import 'package:teste/pag_cadastro.dart';
 import 'package:teste/pag_inicial.dart';
 import 'package:teste/pag_novo.dart';
@@ -14,11 +13,6 @@ class Roteador extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-          primaryColor: Colors.amber,
-          brightness:
-              Controlador.ctrl.ehDeNoite ? Brightness.dark : Brightness.light),
-      initialRoute: '/',
       routes: {
         '/': (context) => const PagLogin(),
         '/lista': (context) => const PagScroll(),
