@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:teste/funcoes.dart';
 
@@ -9,101 +11,145 @@ class PagNovo extends StatefulWidget {
 }
 
 class EstadoPagNovo extends State<PagNovo> {
-  //List<Map<String, dynamic>> selectedClasses = [];
+  DocumentReference<Map<String, dynamic>> usuario = FirebaseFirestore.instance
+      .collection('usuarios')
+      .doc(FirebaseAuth.instance.currentUser?.uid);
 
-  String dropdownvalue = 'ups';
+  Future<void> addEqp(
+      {required nome,
+      required tipo,
+      required mttf,
+      required mttr,
+      required pot,
+      required eff,
+      required preco,
+      required exergia}) {
+    return usuario
+        .collection('equipamentos')
+        .add({
+          'nome': nome,
+          'tipo': tipo,
+          'mttf': mttf,
+          'mttr': mttr,
+          'potencia': pot,
+          'eficiencia': eff,
+          'custo': preco,
+          'exergia': exergia
+        })
+        .then((value) => print(usuario.id))
+        .catchError((error) => print('Falha ao adicionar tanque: $error'));
+  }
 
-  // List of items in our dropdown menu
-  var listaEqp = ['ups', 'sdt', 'subp', 'ps'];
+  Stream<List<User1>> readUsers() => FirebaseFirestore.instance
+      .collection('usuarios')
+      .snapshots()
+      .map((snapshot) =>
+          snapshot.docs.map((doc) => User1.fromJson(doc.data())).toList());
+
+  TextEditingController nome = TextEditingController();
+  var tipoEqp = null;
+  TextEditingController mttf = TextEditingController();
+  TextEditingController mttr = TextEditingController();
+  TextEditingController pot = TextEditingController();
+  TextEditingController eff = TextEditingController();
+  TextEditingController preco = TextEditingController();
+  TextEditingController exergia = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-      color: Colors.amberAccent,
-      child: Column(children: [
-        Container(
-          height: 50,
-        ),
-        SizedBox(
-          height: 80,
-          child: foto(),
-        ),
-        campo('Nome', Icons.article),
-        Container(
-          height: 20,
-        ),
-        DropdownButton(
-          hint: const Text('tipo'),
-          // Initial Value
-          value: dropdownvalue,
-
-          // Down Arrow Icon
-          icon: const Icon(Icons.keyboard_arrow_down),
-
-          elevation: 16,
-          style: const TextStyle(fontSize: 16, color: Colors.black),
-          underline: Container(
-            height: 2,
-            color: Colors.black,
-          ),
-
-          // Array list of items
-          items: listaEqp.map((String eqp) {
-            return DropdownMenuItem(
-              value: eqp,
-              child: Text(eqp),
-            );
-          }).toList(),
-          // After selecting the desired option,it will
-          // change button value to selected value
-          onChanged: (String? newValue) {
-            setState(() {
-              dropdownvalue = newValue!;
-            });
-          },
-        ),
-        campo('mttf', Icons.av_timer_outlined),
-        Container(
-          height: 7,
-        ),
-        campo('mttr', Icons.av_timer_outlined),
-        Container(
-          height: 7,
-        ),
-        campo('Potencia', Icons.bolt),
-        Container(
-          height: 7,
-        ),
-        campo('Eficiencia', Icons.percent_outlined),
-        Container(
-          height: 7,
-        ),
-        campo('Preço de Compra', Icons.monetization_on_outlined),
-        Container(
-          height: 7,
-        ),
-        campo('Exergia', Icons.power),
-        Container(
-          height: 15,
-        ),
-        SizedBox(
-          width: 180,
-          child: RawMaterialButton(
-            fillColor: Colors.blueAccent,
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
-            onPressed: () {},
-            child: const Text(
-              'Salvar',
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+          color: Colors.amberAccent,
+          child: Column(children: [
+            Container(
+              height: 50,
             ),
-          ),
-          //color: Colors.amber,
-        )
-      ]),
-    ));
+            SizedBox(
+              height: 80,
+              child: foto(),
+            ),
+            Container(
+              height: 20,
+            ),
+            campo_entrada(
+                'Nome do Equipamento', Icons.article, nome, TextInputType.name),
+            Container(
+              height: 7,
+            ),
+            SizedBox(
+              width: 300,
+              height: 60,
+              child: DropdownButtonFormField<String>(
+                decoration: InputDecoration(
+                  border: const OutlineInputBorder(),
+                  filled: true,
+                  hintStyle: TextStyle(color: Colors.grey[800]),
+                  hintText: "Tipo de Equipamento",
+                ),
+                onChanged: (String? newValue) {
+                  setState(() {
+                    tipoEqp = newValue!;
+                  });
+                },
+                items: <String>['ups', 'sdt', 'subp', 'ps']
+                    .map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+              ),
+            ),
+            Container(
+              height: 7,
+            ),
+            campo_entrada(
+                'mttf', Icons.av_timer_outlined, mttf, TextInputType.number),
+            Container(
+              height: 7,
+            ),
+            campo_entrada(
+                'mttr', Icons.av_timer_outlined, mttr, TextInputType.number),
+            Container(
+              height: 7,
+            ),
+            campo_entrada('Potencia', Icons.bolt, pot, TextInputType.number),
+            Container(
+              height: 7,
+            ),
+            campo_entrada('Eficiencia', Icons.percent_outlined, eff,
+                TextInputType.number),
+            Container(
+              height: 7,
+            ),
+            campo_entrada('Preço de Compra', Icons.monetization_on_outlined,
+                preco, TextInputType.number),
+            Container(
+              height: 7,
+            ),
+            campo_entrada(
+                'Exergia', Icons.power, exergia, TextInputType.number),
+            Container(
+              height: 15,
+            )
+          ]),
+        ),
+        floatingActionButton: FloatingActionButton(
+            child: const Icon(
+              Icons.save,
+              size: 45,
+            ),
+            onPressed: () {
+              addEqp(
+                  nome: nome.text,
+                  tipo: tipoEqp,
+                  mttf: mttf.text,
+                  mttr: mttr.text,
+                  pot: pot.text,
+                  eff: eff.text,
+                  preco: preco.text,
+                  exergia: exergia.text);
+            }));
   }
 }
 
@@ -114,4 +160,14 @@ Widget foto() {
   );
 }
 
-enum aaa { ups, sdt, subp, ps }
+class User1 {
+  String id;
+  String nome;
+
+  User1({this.id = '', required this.nome});
+
+  Map<String, dynamic> toJson() => {'id': id, 'nome': nome};
+
+  static User1 fromJson(Map<String, dynamic> json) =>
+      User1(id: json['id'], nome: json['nome']);
+}
