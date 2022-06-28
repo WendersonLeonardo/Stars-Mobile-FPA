@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:teste/pag_novo.dart';
+
 import 'funcoes.dart';
 
 class PagScroll extends StatefulWidget {
@@ -48,8 +49,9 @@ class _PagScrollState extends State<PagScroll> {
           return Scaffold(
               appBar: AppBar(
                 title: const Text('Equipamentos'),
+                backgroundColor: const Color.fromARGB(255, 69, 170, 121),
               ),
-              backgroundColor: const Color.fromARGB(255, 115, 230, 186),
+              backgroundColor: const Color.fromARGB(255, 170, 243, 215),
               body: _isEqpMode
                   ? Column(
                       children: [
@@ -78,14 +80,20 @@ class _PagScrollState extends State<PagScroll> {
                         ),
                       ],
                     )
-                  : GridView.count(
-                      crossAxisCount: 2,
-                      padding: const EdgeInsets.all(16.0),
-                      childAspectRatio: 8.0 / 9.0,
-                      // children: _buildGridCards(context, 6)
+                  : ListView(
                       children: <Widget>[
                         for (var i = 0; i < storedocs.length; i++) ...[
-                          Card(
+                          linha(
+                              context,
+                              storedocs[i]['id'],
+                              storedocs[i]['nome'],
+                              storedocs[i]['tipo'],
+                              Colors.greenAccent,
+                              const Icon(
+                                Icons.settings_input_component_rounded,
+                                size: 55,
+                              )),
+                          /*Card(
                             elevation: 10,
                             clipBehavior: Clip.antiAlias,
                             child: InkWell(
@@ -104,7 +112,7 @@ class _PagScrollState extends State<PagScroll> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   const AspectRatio(
-                                      aspectRatio: 18.0 / 11.0,
+                                      aspectRatio: 20.0 / 11.0,
                                       child: Icon(
                                         Icons.settings_input_component_rounded,
                                         size: 65,
@@ -131,7 +139,7 @@ class _PagScrollState extends State<PagScroll> {
                                 ],
                               ),
                             ),
-                          ),
+                          ),*/
                         ],
                       ],
                     ),
@@ -139,7 +147,9 @@ class _PagScrollState extends State<PagScroll> {
                   child: const Icon(
                     Icons.add_circle_outline,
                     size: 55,
+                    color: Color.fromARGB(255, 170, 243, 215),
                   ),
+                  backgroundColor: const Color.fromARGB(255, 69, 170, 121),
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => const PagNovo()));

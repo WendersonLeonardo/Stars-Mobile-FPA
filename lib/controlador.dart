@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 
 class Controlador extends ChangeNotifier {
   static Controlador ctrl = Controlador();
-  bool ehDeNoite = false;
+  bool ehDeNoite1 = false;
 
   changeTheme() {
-    ehDeNoite = !ehDeNoite;
+    ehDeNoite1 = !ehDeNoite1;
     notifyListeners();
   }
 }

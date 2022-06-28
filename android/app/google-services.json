@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "275471260936",
-    "project_id": "stars-mobile",
-    "storage_bucket": "stars-mobile.appspot.com"
+    "project_number": "839604424461",
+    "project_id": "stars-mobile-fpa",
+    "storage_bucket": "stars-mobile-fpa.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:275471260936:android:eaa0453bd501068699e0bd",
+        "mobilesdk_app_id": "1:839604424461:android:509ef7fe477641c21caa44",
         "android_client_info": {
           "package_name": "com.example.teste"
         }
       },
       "oauth_client": [
         {
-          "client_id": "275471260936-acmi99noiv6iaaan2n0a623rf5estuvu.apps.googleusercontent.com",
+          "client_id": "839604424461-7nqr9f34ia82obvhqqov1v7vriktp340.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAIoTn4vMGBHE3q-9q7Xym6IE2T_5cQxQ4"
+          "current_key": "AIzaSyBZ2MPjJHyJAaQ3OKYK6sODy5Ohv-mQK1I"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "275471260936-acmi99noiv6iaaan2n0a623rf5estuvu.apps.googleusercontent.com",
+              "client_id": "839604424461-7nqr9f34ia82obvhqqov1v7vriktp340.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

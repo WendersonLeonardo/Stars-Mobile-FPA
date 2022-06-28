@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:teste/funcoes.dart';
+//import 'pag_cadastro.dart';
 
 class PagNovo extends StatefulWidget {
   const PagNovo({Key? key}) : super(key: key);
@@ -43,6 +44,12 @@ class EstadoPagNovo extends State<PagNovo> {
             context, 'Falha ao cadastrar equipamento', error.toString()));
   }
 
+  /*Stream<List<User1>> readUsers() => FirebaseFirestore.instance
+      .collection('usuarios')
+      .snapshots()
+      .map((snapshot) =>
+          snapshot.docs.map((doc) => User1.fromJson(doc.data())).toList());*/
+
   TextEditingController nome = TextEditingController();
   var tipoEqp = null;
   TextEditingController mttf = TextEditingController();
@@ -52,8 +59,12 @@ class EstadoPagNovo extends State<PagNovo> {
   TextEditingController preco = TextEditingController();
   TextEditingController exergia = TextEditingController();
 
+  // List of items in our dropdown menu
+  //var listaEqp = ['ups', 'sdt', 'subp', 'ps'];
+
   @override
   Widget build(BuildContext context) {
+    //mttf.text = '123';
     return Scaffold(
         body: Container(
           color: const Color.fromARGB(255, 231, 206, 116),
@@ -73,6 +84,24 @@ class EstadoPagNovo extends State<PagNovo> {
             ),
             campoEntrada(
                 'Nome do Equipamento', Icons.article, nome, TextInputType.name),
+            /*Container(
+              width: 300,
+              height: 50,
+              alignment: Alignment.center,
+              child: TextField(
+                controller: nome,
+                onChanged: (dado) {},
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(
+                    hintText: 'Nome',
+                    prefixIcon: Icon(
+                      Icons.article,
+                      color: Colors.grey,
+                      size: 35,
+                    ),
+                    border: OutlineInputBorder()),
+              ),
+            ),*/
             Container(
               height: 7,
             ),
@@ -153,7 +182,12 @@ class EstadoPagNovo extends State<PagNovo> {
             Container(
               height: 7,
             ),
-            campoEntrada('Exergia', Icons.power, exergia, TextInputType.number),
+            campoEntrada(
+              'Exergia',
+              Icons.power,
+              exergia,
+              TextInputType.number,
+            ),
             Container(
               height: 15,
             ) /*,
@@ -180,7 +214,9 @@ class EstadoPagNovo extends State<PagNovo> {
             child: const Icon(
               Icons.save,
               size: 45,
+              color: Color.fromARGB(255, 231, 206, 116),
             ),
+            backgroundColor: const Color.fromARGB(255, 138, 121, 61),
             onPressed: () {
               addEqp(
                   nome: nome.text,
@@ -194,3 +230,23 @@ class EstadoPagNovo extends State<PagNovo> {
             }));
   }
 }
+/*
+Widget foto() {
+  return const Icon(
+    Icons.settings_input_component_rounded,
+    size: 65,
+  );
+}
+
+class User1 {
+  String id;
+  String nome;
+
+  User1({this.id = '', required this.nome});
+
+  Map<String, dynamic> toJson() => {'id': id, 'nome': nome};
+
+  static User1 fromJson(Map<String, dynamic> json) =>
+      User1(id: json['id'], nome: json['nome']);
+}
+*/
