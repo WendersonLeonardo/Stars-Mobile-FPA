@@ -15,5 +15,7 @@ For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
+![logo](https://github.com/WendersonLeonardo/Stars-Mobile-FPA/blob/main/assets/images/logo.png)
 
-![Cadastro](https://user-images.githubusercontent.com/102536235/168188669-4c500708-15d8-4452-b497-c288ba99ba81.png)
+
+
