@@ -12,6 +12,15 @@ Uma ferramenta mobile para cadastro de equipamentos para modelagem de data cente
 - Listagem de Equipamentos Criados
 - Edição de Equipamentos
 
+## Telas e Diagramas
+
+- [Tela de Login] (https://github.com/WendersonLeonardo/Stars-Mobile-FPA/blob/main/assets/telas/diagrama_tela1.png)
+- [Tela de Cadastro] (https://github.com/WendersonLeonardo/Stars-Mobile-FPA/blob/main/assets/telas/diagrama_tela2.png)
+- [Tela de Equipamentos (vazia)] (https://github.com/WendersonLeonardo/Stars-Mobile-FPA/blob/main/assets/telas/diagrama_tela3.png)
+- [Tela de Equipamentos] (https://github.com/WendersonLeonardo/Stars-Mobile-FPA/blob/main/assets/telas/diagrama_tela3.5.png)
+- [Tela de Criação de Equipamento] (https://github.com/WendersonLeonardo/Stars-Mobile-FPA/blob/main/assets/telas/diagrama_tela4.png)
+- [Tela de Edição de Equipamento] (https://github.com/WendersonLeonardo/Stars-Mobile-FPA/blob/main/assets/telas/diagrama_tela5.png)
+
 ## Tecnologias
 
 O Projeto utiliza as seguintes tecnologias:
