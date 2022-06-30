@@ -40,6 +40,9 @@ Uma ferramenta mobile para cadastro de equipamentos para modelagem de data cente
 - Tela de Edição de Equipamento
 ![tela5](https://github.com/WendersonLeonardo/Stars-Mobile-FPA/blob/main/assets/telas/diagrama_tela5.png)
 
+- Widgets Personalisados
+![widgets](https://github.com/WendersonLeonardo/Stars-Mobile-FPA/blob/main/assets/telas/widgets%20personalisados.PNG)
+
 ## Tecnologias
 
 O Projeto utiliza as seguintes tecnologias:
