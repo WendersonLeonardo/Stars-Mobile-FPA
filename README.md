@@ -13,18 +13,23 @@ Uma ferramenta mobile para cadastro de equipamentos para modelagem de data cente
 - Edição de Equipamentos
 
 ## Telas e Diagramas
--Tela de Login
+- Tela de Login
 ![tela1](https://github.com/WendersonLeonardo/Stars-Mobile-FPA/blob/main/assets/telas/diagrama_tela1.png)
 
-![Tela de Cadastro](https://github.com/WendersonLeonardo/Stars-Mobile-FPA/blob/main/assets/telas/diagrama_tela2.png)
+- Tela de Cadastro
+![tela2](https://github.com/WendersonLeonardo/Stars-Mobile-FPA/blob/main/assets/telas/diagrama_tela2.png)
 
-![Tela de Equipamentos (vazia)](https://github.com/WendersonLeonardo/Stars-Mobile-FPA/blob/main/assets/telas/diagrama_tela3.png)
+- Tela de Equipamentos (vazia)
+![tela3](https://github.com/WendersonLeonardo/Stars-Mobile-FPA/blob/main/assets/telas/diagrama_tela3.png)
 
-![Tela de Equipamentos](https://github.com/WendersonLeonardo/Stars-Mobile-FPA/blob/main/assets/telas/diagrama_tela3.5.png)
+- Tela de Equipamentos
+![tela3.5](https://github.com/WendersonLeonardo/Stars-Mobile-FPA/blob/main/assets/telas/diagrama_tela3.5.png)
 
-![Tela de Criação de Equipamento](https://github.com/WendersonLeonardo/Stars-Mobile-FPA/blob/main/assets/telas/diagrama_tela4.png)
+- Tela de Criação de Equipamento
+![tela4](https://github.com/WendersonLeonardo/Stars-Mobile-FPA/blob/main/assets/telas/diagrama_tela4.png)
 
-![Tela de Edição de Equipamento](https://github.com/WendersonLeonardo/Stars-Mobile-FPA/blob/main/assets/telas/diagrama_tela5.png)
+- Tela de Edição de Equipamento
+![tela5](https://github.com/WendersonLeonardo/Stars-Mobile-FPA/blob/main/assets/telas/diagrama_tela5.png)
 
 ## Tecnologias
 
