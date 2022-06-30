@@ -4,6 +4,15 @@
 
 Uma ferramenta mobile para cadastro de equipamentos para modelagem de data centers.
 
+## Links Importantes
+- Publicidade
+
+- Apresentação do App
+
+- PlayStore
+
+## Navegação
+
 ## Funcionalidades
 
 - Login de usuario
@@ -12,7 +21,7 @@ Uma ferramenta mobile para cadastro de equipamentos para modelagem de data cente
 - Listagem de Equipamentos Criados
 - Edição de Equipamentos
 
-## Telas e Diagramas
+## Telas e Diagramas de Widgets
 - Tela de Login
 ![tela1](https://github.com/WendersonLeonardo/Stars-Mobile-FPA/blob/main/assets/telas/diagrama_tela1.png)
 
