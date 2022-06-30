@@ -17,19 +17,12 @@ Widget linha(context, String id, String texto1, String texto2, Color cor,
         ),
       ),
       onTap: () {
-        //Navigator.of(context).pushNamed('/inicial');
         Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => PagDados(id: id),
           ),
         );
-        /*Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => PagDados(
-                  texto1: texto1,
-                  texto2: texto2,
-                  icone: icone,
-                )))*/
       });
 }
 
@@ -39,28 +32,11 @@ class FicaEscuro extends ChangeNotifier {
   bool estahEscuro = false;
 
   escurecer() {
-    //('b' + estahEscuro.toString());
     estahEscuro = !estahEscuro;
     (estahEscuro ? Brightness.dark : Brightness.light);
     notifyListeners();
   }
 }
-/*
-class Alternador extends StatelessWidget {
-  const Alternador({Key? key}) : super(key: key);
-
-  //const Alternador({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Switch(
-        value: Controlador.ctrl.ehDeNoite,
-        onChanged: (value) {
-          //value = false;
-          Controlador.ctrl.changeTheme();
-        });
-  }
-}*/
 
 Widget campo(String texto, IconData icone) {
   return Container(
@@ -117,7 +93,6 @@ Widget campoEdissaum(String conteudo, String dica, IconData icone,
       keyboardType: tipo,
       decoration: InputDecoration(
           labelText: dica,
-          //hintText: dica,
           prefixIcon: Icon(
             icone,
             color: const Color.fromARGB(255, 97, 85, 204),
@@ -160,36 +135,3 @@ void chamarAviso(BuildContext context, String titulo, String texto) {
         );
       });
 }
-
-/*
-Widget linha(context, String texto, Color cor) {
-  return GestureDetector(
-      child: Container(
-          color: cor,
-          width: 500,
-          height: 70,
-          child: Row(
-            children: [
-              SizedBox(
-                //color: Colors.black,
-                width: 50,
-                height: 50,
-                child: Image.asset('assets/images/icone1.jpg'),
-              ),
-              Text(
-                texto,
-                style: const TextStyle(
-                  fontSize: 30,
-                ),
-              )
-            ],
-          )),
-      onTap: () {
-        //Navigator.of(context).pushNamed('/inicial');
-        Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => PagInicial(
-                  texto: texto,
-                )));
-      });
-}
-*/

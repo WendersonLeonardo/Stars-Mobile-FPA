@@ -7,7 +7,7 @@ import 'funcoes.dart';
 class PagDados extends StatefulWidget {
   final String id;
   const PagDados({Key? key, required this.id}) : super(key: key);
-  //const PagInicial({Key? key, required this.texto}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return EstadoPagDados();
@@ -109,7 +109,6 @@ class EstadoPagDados extends State<PagDados> {
                   SizedBox(
                     width: 300,
                     height: 60,
-                    //padding: EdgeInsets.only(left: 5, right: 5),
                     child: DropdownButtonFormField<String>(
                       decoration: InputDecoration(
                         border: const OutlineInputBorder(),
@@ -179,15 +178,6 @@ class EstadoPagDados extends State<PagDados> {
                   backgroundColor: const Color.fromARGB(255, 97, 85, 204),
                   onPressed: () {
                     atualizar();
-                    /*addEqp(
-                  nome: nome.text,
-                  tipo: tipoEqp,
-                  mttf: mttf.text,
-                  mttr: mttr.text,
-                  pot: pot.text,
-                  eff: eff.text,
-                  preco: preco.text,
-                  exergia: exergia.text);*/
                   }));
         });
   }

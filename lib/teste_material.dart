@@ -19,14 +19,6 @@ class TesteMaterial extends StatelessWidget {
                   ? Brightness.dark
                   : Brightness.light),
           home: const Home1(),
-          /*initialRoute: '/',
-          routes: {
-            '/': (context) => const PagLogin(),
-            '/inicial': (context) => PagInicial(
-                  texto: texto,
-                ),
-            '/lista': (context) => const PagScroll(),
-          },*/
         );
       },
     );

@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:teste/funcoes.dart';
-//import 'pag_cadastro.dart';
 
 class PagNovo extends StatefulWidget {
   const PagNovo({Key? key}) : super(key: key);
@@ -12,8 +11,6 @@ class PagNovo extends StatefulWidget {
 }
 
 class EstadoPagNovo extends State<PagNovo> {
-  //List<Map<String, dynamic>> selectedClasses = [];
-
   DocumentReference<Map<String, dynamic>> usuario = FirebaseFirestore.instance
       .collection('usuarios')
       .doc(FirebaseAuth.instance.currentUser?.uid);
@@ -44,12 +41,6 @@ class EstadoPagNovo extends State<PagNovo> {
             context, 'Falha ao cadastrar equipamento', error.toString()));
   }
 
-  /*Stream<List<User1>> readUsers() => FirebaseFirestore.instance
-      .collection('usuarios')
-      .snapshots()
-      .map((snapshot) =>
-          snapshot.docs.map((doc) => User1.fromJson(doc.data())).toList());*/
-
   TextEditingController nome = TextEditingController();
   var tipoEqp = null;
   TextEditingController mttf = TextEditingController();
@@ -59,12 +50,8 @@ class EstadoPagNovo extends State<PagNovo> {
   TextEditingController preco = TextEditingController();
   TextEditingController exergia = TextEditingController();
 
-  // List of items in our dropdown menu
-  //var listaEqp = ['ups', 'sdt', 'subp', 'ps'];
-
   @override
   Widget build(BuildContext context) {
-    //mttf.text = '123';
     return Scaffold(
         body: Container(
           color: const Color.fromARGB(255, 231, 206, 116),
@@ -84,24 +71,6 @@ class EstadoPagNovo extends State<PagNovo> {
             ),
             campoEntrada(
                 'Nome do Equipamento', Icons.article, nome, TextInputType.name),
-            /*Container(
-              width: 300,
-              height: 50,
-              alignment: Alignment.center,
-              child: TextField(
-                controller: nome,
-                onChanged: (dado) {},
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(
-                    hintText: 'Nome',
-                    prefixIcon: Icon(
-                      Icons.article,
-                      color: Colors.grey,
-                      size: 35,
-                    ),
-                    border: OutlineInputBorder()),
-              ),
-            ),*/
             Container(
               height: 7,
             ),
@@ -111,11 +80,7 @@ class EstadoPagNovo extends State<PagNovo> {
               //padding: EdgeInsets.only(left: 5, right: 5),
               child: DropdownButtonFormField<String>(
                 decoration: InputDecoration(
-                  border: const OutlineInputBorder(
-                      //borderRadius: const BorderRadius.all(
-                      //const Radius.circular(30.0),
-                      //),
-                      ),
+                  border: const OutlineInputBorder(),
                   filled: true,
                   hintStyle: TextStyle(color: Colors.grey[800]),
                   hintText: "Tipo de Equipamento",
@@ -137,27 +102,6 @@ class EstadoPagNovo extends State<PagNovo> {
             Container(
               height: 7,
             ),
-            /*DropdownButton(
-          hint: const Text('Tipo Equipamento'),
-          icon: const Icon(Icons.keyboard_arrow_down),
-          elevation: 16,
-          style: const TextStyle(fontSize: 16, color: Colors.black),
-          underline: Container(
-            height: 2,
-            color: Colors.black,
-          ),
-          items: listaEqp.map((String eqp) {
-            return DropdownMenuItem(
-              value: eqp,
-              child: Text(eqp),
-            );
-          }).toList(),
-          onChanged: (String? newValue) {
-            setState(() {
-              dropdownvalue = newValue!;
-            });
-          },
-        ),*/
             campoEntrada(
                 'mttf', Icons.av_timer_outlined, mttf, TextInputType.number),
             Container(
@@ -190,24 +134,7 @@ class EstadoPagNovo extends State<PagNovo> {
             ),
             Container(
               height: 15,
-            ) /*,
-            SizedBox(
-              width: 180,
-              child: RawMaterialButton(
-                fillColor: Colors.blueAccent,
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25)),
-                onPressed: () {
-                  addEqp(nome: nome.text);
-                },
-                child: const Text(
-                  'Salvar',
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                ),
-              ),
-              //color: Colors.amber,
-            )*/
+            )
           ]),
         ),
         floatingActionButton: FloatingActionButton(
@@ -230,23 +157,3 @@ class EstadoPagNovo extends State<PagNovo> {
             }));
   }
 }
-/*
-Widget foto() {
-  return const Icon(
-    Icons.settings_input_component_rounded,
-    size: 65,
-  );
-}
-
-class User1 {
-  String id;
-  String nome;
-
-  User1({this.id = '', required this.nome});
-
-  Map<String, dynamic> toJson() => {'id': id, 'nome': nome};
-
-  static User1 fromJson(Map<String, dynamic> json) =>
-      User1(id: json['id'], nome: json['nome']);
-}
-*/

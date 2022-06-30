@@ -93,53 +93,6 @@ class _PagScrollState extends State<PagScroll> {
                                 Icons.settings_input_component_rounded,
                                 size: 55,
                               )),
-                          /*Card(
-                            elevation: 10,
-                            clipBehavior: Clip.antiAlias,
-                            child: InkWell(
-                              onTap: () {
-                                // Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>InfoTanque( id: storedocs[i]['id'])));
-
-                                /*Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => InfoTanque(
-                                id: storedocs[i]['id']),
-                          ),
-                        );*/
-                              },
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  const AspectRatio(
-                                      aspectRatio: 20.0 / 11.0,
-                                      child: Icon(
-                                        Icons.settings_input_component_rounded,
-                                        size: 65,
-                                      )
-                                      //Image.asset('assets/images/tanque.png'),
-                                      ),
-                                  Padding(
-                                    padding: const EdgeInsets.fromLTRB(
-                                        16.0, 0.0, 16.0, 8.0),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        Text(
-                                          storedocs[i]['nome'],
-                                          style: const TextStyle(
-                                              fontSize: 14.0,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        Text(storedocs[i]['tipo'])
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),*/
                         ],
                       ],
                     ),
