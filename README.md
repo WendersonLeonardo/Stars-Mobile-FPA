@@ -13,8 +13,8 @@ Uma ferramenta mobile para cadastro de equipamentos para modelagem de data cente
 - Edição de Equipamentos
 
 ## Telas e Diagramas
-
-![Tela de Login](https://github.com/WendersonLeonardo/Stars-Mobile-FPA/blob/main/assets/telas/diagrama_tela1.png)
+-Tela de Login
+![tela1](https://github.com/WendersonLeonardo/Stars-Mobile-FPA/blob/main/assets/telas/diagrama_tela1.png)
 
 ![Tela de Cadastro](https://github.com/WendersonLeonardo/Stars-Mobile-FPA/blob/main/assets/telas/diagrama_tela2.png)
 
