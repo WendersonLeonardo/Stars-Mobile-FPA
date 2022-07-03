@@ -6,13 +6,16 @@ Uma ferramenta mobile para cadastro de equipamentos para modelagem de data cente
 
 ## Links Importantes
 - Publicidade
+https://drive.google.com/file/d/1z6jFC5AA8OfLIrLQHWbDk6euucDmnoJW/view?usp=sharing
 
 - Apresentação do App
+https://drive.google.com/file/d/1y4833c23y4IdbG01Tk2oThsMGT5QPYzy/view?usp=sharing
 
 - PlayStore
+https://play.google.com/store/apps/details?id=app.stars_mobile
 
 ## Navegação
-
+![navegação](https://github.com/WendersonLeonardo/Stars-Mobile-FPA/blob/main/assets/telas/navega%C3%A7%C3%A3o.png)
 ## Funcionalidades
 
 - Login de usuario
